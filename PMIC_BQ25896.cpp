@@ -53,6 +53,13 @@ void PMIC_BQ25896::begin(TwoWire *theWire){
     _i2c->begin();
 }
 
+bool PMIC_BQ25896::isConnected(){
+    _i2c->beginTransmission(_i2c_addr);
+    uint8_t error = _i2c->endTransmission();
+    if(error == 0) return true;
+    else return false;
+}
+
 void PMIC_BQ25896::reset(){
     PMIC_BQ25896::setREG_RST(1);
 }

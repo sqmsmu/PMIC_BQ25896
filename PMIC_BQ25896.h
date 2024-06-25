@@ -496,6 +496,9 @@ public:
     // Initializes BQ25896
     void begin(TwoWire *theWire = &Wire);
 
+    // Check if IC is communicating
+    bool isConnected();
+
     // Resets BQ25896
     void reset();
 

@@ -86,14 +86,14 @@ void PMIC_BQ25896::setEN_ILIM(bool value){
 bq25896_error_t PMIC_BQ25896::setIINLIM(int value){
     ilim_reg_t temp_reg;
     if(value < 100 && value > 3250){
-        return INVALID_RANGE;
+        return BQ_RANGE_ERR;
     }
     uint16_t data = value - 100;
     data = (float)data/50.0;
     _read(ILIM, (uint8_t*)&temp_reg);
     temp_reg.iinlim = data;
     _write(ILIM, (uint8_t*)&temp_reg);
-    return SUCCESS;    
+    return BQ_OK;    
 }
 uint16_t PMIC_BQ25896::getIINLIM(){
     ilim_reg_t temp_reg = PMIC_BQ25896::getILIM_reg();
@@ -110,12 +110,12 @@ vindpm_os_reg_t PMIC_BQ25896::getVINDPM_OS_reg(){
 bq25896_error_t PMIC_BQ25896::setBHOT(int value){
     vindpm_os_reg_t temp_reg;
     if(value < 0 && value > 3){
-        return INVALID_RANGE;
+        return BQ_RANGE_ERR;
     }
     _read(VINDPM_OS, (uint8_t*)&temp_reg);
     temp_reg.bhot = value;
     _write(VINDPM_OS, (uint8_t*)&temp_reg);
-    return SUCCESS; 
+    return BQ_OK; 
 }
 void PMIC_BQ25896::setBCOLD(bool value){
     vindpm_os_reg_t temp_reg;
@@ -126,13 +126,13 @@ void PMIC_BQ25896::setBCOLD(bool value){
 bq25896_error_t PMIC_BQ25896::setVINDPM_OS(int value){
     vindpm_os_reg_t temp_reg;
     if(value < 0 && value > 3100){
-        return INVALID_RANGE;
+        return BQ_RANGE_ERR;
     }
     uint16_t data = (float)value / 100.0;
     _read(VINDPM_OS, (uint8_t*)&temp_reg);
     temp_reg.vindpm_os = data;
     _write(VINDPM_OS, (uint8_t*)&temp_reg);
-    return SUCCESS; 
+    return BQ_OK; 
 }
 uint16_t PMIC_BQ25896::getVINDPM_OS(){
     vindpm_os_reg_t temp_reg = PMIC_BQ25896::getVINDPM_OS_reg();
@@ -216,14 +216,14 @@ void PMIC_BQ25896::setCHG_CONFIG(bool value){
 bq25896_error_t PMIC_BQ25896::setSYS_MIN(int value){
     sys_ctrl_reg_t temp_reg;
     if(value < 3000 && value > 3700){
-        return INVALID_RANGE;
+        return BQ_RANGE_ERR;
     }
     uint16_t data = value - 3000;
     data = (float)data/100.0;
     _read(SYS_CTRL, (uint8_t*)&temp_reg);
     temp_reg.sys_min = data;
     _write(SYS_CTRL, (uint8_t*)&temp_reg);
-    return SUCCESS;
+    return BQ_OK;
 }
 uint16_t PMIC_BQ25896::getSYS_MIN(){
     sys_ctrl_reg_t temp_reg = PMIC_BQ25896::getSYS_CTRL_reg();
@@ -252,13 +252,13 @@ void PMIC_BQ25896::setEN_PUMPX(bool value){
 bq25896_error_t PMIC_BQ25896::setICHG(int value){
     ichg_reg_t temp_reg;
     if(value < 0 && value > 3008){
-        return INVALID_RANGE;
+        return BQ_RANGE_ERR;
     }
     uint16_t data = (float)value / 64.0;
     _read(ICHG, (uint8_t*)&temp_reg);
     temp_reg.ichg = data;
     _write(ICHG, (uint8_t*)&temp_reg);
-    return SUCCESS;
+    return BQ_OK;
 }
 uint16_t PMIC_BQ25896::getICHG(){
     ichg_reg_t temp_reg = PMIC_BQ25896::getICHG_reg();
@@ -275,14 +275,14 @@ ipre_iterm_reg_t PMIC_BQ25896::getIPRE_ITERM_reg(){
 bq25896_error_t PMIC_BQ25896::setIPRECHG(int value){
     ipre_iterm_reg_t temp_reg;
     if(value < 64 && value > 1024){
-        return INVALID_RANGE;
+        return BQ_RANGE_ERR;
     }
     uint16_t data = value - 64.0;
     data = (float)data / 64.0;
     _read(IPRE_ITERM, (uint8_t*)&temp_reg);
     temp_reg.iprechg = data;
     _write(IPRE_ITERM, (uint8_t*)&temp_reg);
-    return SUCCESS;
+    return BQ_OK;
 }
 uint16_t PMIC_BQ25896::getIPRECHG(){
     ipre_iterm_reg_t temp_reg = PMIC_BQ25896::getIPRE_ITERM_reg();
@@ -292,14 +292,14 @@ uint16_t PMIC_BQ25896::getIPRECHG(){
 bq25896_error_t PMIC_BQ25896::setITERM(int value){
     ipre_iterm_reg_t temp_reg;
     if(value < 64 && value > 1024){
-        return INVALID_RANGE;
+        return BQ_RANGE_ERR;
     }
     uint16_t data = value - 64.0;
     data = (float)data / 64.0;
     _read(IPRE_ITERM, (uint8_t*)&temp_reg);
     temp_reg.iterm = data;
     _write(IPRE_ITERM, (uint8_t*)&temp_reg);
-    return SUCCESS;
+    return BQ_OK;
 }
 uint16_t PMIC_BQ25896::getITERM(){
     ipre_iterm_reg_t temp_reg = PMIC_BQ25896::getIPRE_ITERM_reg();
@@ -316,14 +316,14 @@ vreg_reg_t PMIC_BQ25896::getVREG_reg(){
 bq25896_error_t PMIC_BQ25896::setVREG(int value){
     vreg_reg_t temp_reg;
     if(value < 3840 && value > 4608){
-        return INVALID_RANGE;
+        return BQ_RANGE_ERR;
     }
     uint16_t data = value - 3840.0;
     data = (float)data / 16.0;
     _read(VREG, (uint8_t*)&temp_reg);
     temp_reg.vreg = data;
     _write(VREG, (uint8_t*)&temp_reg);
-    return SUCCESS;
+    return BQ_OK;
 }
 uint16_t PMIC_BQ25896::getVREG(){
     vreg_reg_t temp_reg = PMIC_BQ25896::getVREG_reg();
@@ -364,12 +364,12 @@ void PMIC_BQ25896::setSTAT_DIS(bool value){
 bq25896_error_t PMIC_BQ25896::setWATCHDOG(int value){
     timer_reg_t temp_reg;
     if(value < 0 && value > 3){
-        return INVALID_RANGE;
+        return BQ_RANGE_ERR;
     }
     _read(TIMER, (uint8_t*)&temp_reg);
     temp_reg.watchdog = value;
     _write(TIMER, (uint8_t*)&temp_reg);
-    return SUCCESS;
+    return BQ_OK;
 }
 void PMIC_BQ25896::setEN_TIMER(bool value){
     timer_reg_t temp_reg;
@@ -380,12 +380,12 @@ void PMIC_BQ25896::setEN_TIMER(bool value){
 bq25896_error_t PMIC_BQ25896::setCHG_TIMER(int value){
     timer_reg_t temp_reg;
     if(value < 0 && value > 3){
-        return INVALID_RANGE;
+        return BQ_RANGE_ERR;
     }
     _read(TIMER, (uint8_t*)&temp_reg);
     temp_reg.chg_timer = value;
     _write(TIMER, (uint8_t*)&temp_reg);
-    return SUCCESS;
+    return BQ_OK;
 }
 void PMIC_BQ25896::setJEITA_ISET(bool value){
     timer_reg_t temp_reg;
@@ -403,13 +403,13 @@ bat_comp_reg_t PMIC_BQ25896::getBAT_COMP_reg(){
 bq25896_error_t PMIC_BQ25896::setBAT_COMP(int value){
     bat_comp_reg_t temp_reg;
     if(value < 0 && value > 140){
-        return INVALID_RANGE;
+        return BQ_RANGE_ERR;
     }
     uint16_t data = (float)value / 20.0;
     _read(BAT_COMP, (uint8_t*)&temp_reg);
     temp_reg.bat_comp = data;
     _write(BAT_COMP, (uint8_t*)&temp_reg);
-    return SUCCESS;
+    return BQ_OK;
 }
 uint16_t PMIC_BQ25896::getBAT_COMP(){
     bat_comp_reg_t temp_reg = PMIC_BQ25896::getBAT_COMP_reg();
@@ -419,13 +419,13 @@ uint16_t PMIC_BQ25896::getBAT_COMP(){
 bq25896_error_t PMIC_BQ25896::setVCLAMP(int value){
     bat_comp_reg_t temp_reg;
     if(value < 0 && value > 224){
-        return INVALID_RANGE;
+        return BQ_RANGE_ERR;
     }
     uint16_t data = (float)value / 32.0;
     _read(BAT_COMP, (uint8_t*)&temp_reg);
     temp_reg.vclamp = data;
     _write(BAT_COMP, (uint8_t*)&temp_reg);
-    return SUCCESS;
+    return BQ_OK;
 }
 uint16_t PMIC_BQ25896::getVCLAMP(){
     bat_comp_reg_t temp_reg = PMIC_BQ25896::getBAT_COMP_reg();
@@ -435,12 +435,12 @@ uint16_t PMIC_BQ25896::getVCLAMP(){
 bq25896_error_t PMIC_BQ25896::setTREG(int value){
     bat_comp_reg_t temp_reg;
     if(value < 0 && value > 3){
-        return INVALID_RANGE;
+        return BQ_RANGE_ERR;
     }
     _read(BAT_COMP, (uint8_t*)&temp_reg);
     temp_reg.treg = value;
     _write(BAT_COMP, (uint8_t*)&temp_reg);
-    return SUCCESS;
+    return BQ_OK;
 }
 
 // REG09
@@ -507,14 +507,14 @@ boost_ctrl_reg_t PMIC_BQ25896::getBOOST_CTRL_reg(){
 bq25896_error_t PMIC_BQ25896::setBOOSTV(int value){
     boost_ctrl_reg_t temp_reg;
     if(value < 4550 && value > 5510){
-        return INVALID_RANGE;
+        return BQ_RANGE_ERR;
     }
     uint16_t data = value - 4550.0;
     data = (float)data / 64.0;
     _read(BOOST_CTRL, (uint8_t*)&temp_reg);
     temp_reg.boostv = data;
     _write(BOOST_CTRL, (uint8_t*)&temp_reg);
-    return SUCCESS;
+    return BQ_OK;
 }
 uint16_t PMIC_BQ25896::getBOOSTV(){
     boost_ctrl_reg_t temp_reg = PMIC_BQ25896::getBOOST_CTRL_reg();
@@ -530,12 +530,12 @@ void PMIC_BQ25896::setPFM_OTG_DIS(bool value){
 bq25896_error_t PMIC_BQ25896::setBOOST_LIM(int value){
     boost_ctrl_reg_t temp_reg;
     if(value < 0 && value > 6){
-        return INVALID_RANGE;
+        return BQ_RANGE_ERR;
     }
     _read(BOOST_CTRL, (uint8_t*)&temp_reg);
     temp_reg.boost_lim = value;
     _write(BOOST_CTRL, (uint8_t*)&temp_reg);
-    return SUCCESS;
+    return BQ_OK;
 }
 uint16_t PMIC_BQ25896::getBOOST_LIM(){
     boost_ctrl_reg_t temp_reg = PMIC_BQ25896::getBOOST_CTRL_reg();
@@ -596,14 +596,14 @@ void PMIC_BQ25896::setFORCE_VINDPM(bool value){
 bq25896_error_t PMIC_BQ25896::setVINDPM(int value){
     vindpm_reg_t temp_reg;
     if(value < 3900 && value > 15300){
-        return INVALID_RANGE;
+        return BQ_RANGE_ERR;
     }
     uint16_t data = value - 2600.0;
     data = (float)data / 100.0;
     _read(VINDPM, (uint8_t*)&temp_reg);
     temp_reg.vindpm = value;
     _write(VINDPM, (uint8_t*)&temp_reg);
-    return SUCCESS;
+    return BQ_OK;
 }
 uint16_t PMIC_BQ25896::getVINDPM(){
     vindpm_reg_t temp_reg = PMIC_BQ25896::getVINDPM_reg();

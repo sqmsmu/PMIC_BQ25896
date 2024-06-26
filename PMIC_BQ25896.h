@@ -61,8 +61,8 @@ typedef enum {
 } bq25896_reg_t;
 
 typedef enum {
-    SUCCESS = 0x00,
-    INVALID_RANGE
+    BQ_OK = 0x00,
+    BQ_RANGE_ERR
 } bq25896_error_t;
 
 typedef struct {

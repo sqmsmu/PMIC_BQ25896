@@ -80,7 +80,7 @@ typedef struct {
     // 0 - Disable (default)
     // 1 - Enable
     uint8_t en_hiz:1;
-} ilim_reg_t __attribute__((packed));
+} ilim_reg_t __attribute__(());
 
 typedef struct {
     // Input Voltage Limit Offset
@@ -99,7 +99,7 @@ typedef struct {
     // 10 – VBHOT2 Threshold (Typ. 31.25%)
     // 11 – Disable boost mode thermal protection
     uint8_t bhot:2;
-} vindpm_os_reg_t __attribute__((packed));
+} vindpm_os_reg_t __attribute__(());
 
 typedef struct {
     // Automatic Input Detection Enable
@@ -130,7 +130,7 @@ typedef struct {
     // 1 – Start ADC Conversion
     // This bit is read-only when CONV_RATE = 1. The bit stays high during ADC conversion and during input source detection.
     uint8_t conv_start:1;
-} adc_ctrl_reg_t __attribute__((packed));
+} adc_ctrl_reg_t __attribute__(());
 
 typedef struct {
     // Minimum Battery Voltage (falling) to exit boost mode
@@ -158,7 +158,7 @@ typedef struct {
     // 0 – Disabled (default)
     // 1 – Enabled
     uint8_t bat_loaden:1;
-} sys_ctrl_reg_t __attribute__((packed));
+} sys_ctrl_reg_t __attribute__(());
 
 typedef struct {
     // Fast Charge Current Limit
@@ -172,7 +172,7 @@ typedef struct {
     // 0 - Disable Current pulse control (default)
     // 1- Enable Current pulse control (PUMPX_UP and PUMPX_DN)
     uint8_t en_pumpx:1;
-} ichg_reg_t __attribute__((packed));
+} ichg_reg_t __attribute__(());
 
 typedef struct {
     // Termination Current Limit
@@ -185,7 +185,7 @@ typedef struct {
     // Range: 64mA (0000) – 1024mA (1111) (LSB = 64mA)
     // Default: 128mA (0001)
     uint8_t iprechg:4;
-} ipre_iterm_reg_t __attribute__((packed));
+} ipre_iterm_reg_t __attribute__(());
 
 typedef struct {
     // Battery Recharge Threshold Offset (below Charge Voltage Limit)
@@ -202,7 +202,7 @@ typedef struct {
     // Default: 4.208V (010111)
     // Note: VREG > 110000 (4.608V) is clamped to register value 110000 (4.608V)
     uint8_t vreg:6;
-} vreg_reg_t __attribute__((packed));
+} vreg_reg_t __attribute__(());
 
 typedef struct {
     // JEITA Low Temperature Current Setting
@@ -233,7 +233,7 @@ typedef struct {
     // 0 – Disable
     // 1 – Enable (default)
     uint8_t en_term:1;
-} timer_reg_t __attribute__((packed));
+} timer_reg_t __attribute__(());
 
 typedef struct {
     // Thermal Regulation Threshold
@@ -252,7 +252,7 @@ typedef struct {
     // Range: 0mΩ (000) – 140mΩ (111) (LSB = 20mΩ)
     // Default: 0Ω (000) (i.e. Disable IRComp)
     uint8_t bat_comp:3;
-} bat_comp_reg_t __attribute__((packed));
+} bat_comp_reg_t __attribute__(());
 
 typedef struct {
     // Current pulse control voltage down enable
@@ -290,7 +290,7 @@ typedef struct {
     // 1 – Force ICO
     // Note: This bit is can only be set only and always returns to 0 after ICO starts
     uint8_t force_ico:1;
-} ctrl1_reg_t __attribute__((packed));
+} ctrl1_reg_t __attribute__(());
 
 typedef struct {
     // Boost Mode Current Limit
@@ -312,7 +312,7 @@ typedef struct {
     // Range: 4.55V (0000) – 5.51V (1111) (LSB = 64mV)
     // Default: 4.998V (0111)
     uint8_t boostv:4;
-} boost_ctrl_reg_t __attribute__((packed));
+} boost_ctrl_reg_t __attribute__(());
 
 typedef struct {
     // VSYS Regulation Status
@@ -338,7 +338,7 @@ typedef struct {
     // 111: OTG
     // Note: Software current limit is reported in IINLIM register
     uint8_t vbus_stat:3;
-} vbus_stat_reg_t __attribute__((packed));
+} vbus_stat_reg_t __attribute__(());
 
 typedef struct {
     // NTC Fault Status
@@ -371,7 +371,7 @@ typedef struct {
     // 0 – Normal
     // 1 - Watchdog timer expiration
     uint8_t watchdog_fault:1;
-} fault_reg_t __attribute__((packed));
+} fault_reg_t __attribute__(());
 
 typedef struct {
     // Absolute VINDPM Threshold
@@ -388,7 +388,7 @@ typedef struct {
     // 1 – Run Absolute VINDPM Threshold
     // Note: Register is reset to default value when input source is plugged-in
     uint8_t force_vindpm:1;
-} vindpm_reg_t __attribute__((packed));
+} vindpm_reg_t __attribute__(());
 
 typedef struct {
     // ADC conversion of Battery Voltage (VBAT)
@@ -400,7 +400,7 @@ typedef struct {
     // 0 – Normal
     // 1 – In Thermal Regulation
     uint8_t therm_stat:1;
-} batv_reg_t __attribute__((packed));
+} batv_reg_t __attribute__(());
 
 typedef struct {
     // ADC conversion of System Voltage (VSYS)
@@ -410,7 +410,7 @@ typedef struct {
     uint8_t sysv:7;
     // Reserved - always reads 0
     uint8_t reserved:1;
-} sysv_reg_t __attribute__((packed));
+} sysv_reg_t __attribute__(());
 
 typedef struct {
     // ADC conversion of TS Voltage (TS) as percentage of REGN
@@ -420,7 +420,7 @@ typedef struct {
     uint8_t tspct:7;
     // Reserved - always reads 0
     uint8_t reserved:1;
-} tspct_reg_t __attribute__((packed));
+} tspct_reg_t __attribute__(());
 
 typedef struct {
     // ADC conversion of VBUS voltage (VBUS)
@@ -432,7 +432,7 @@ typedef struct {
     // 0 – Not VBUS attached
     // 1 – VBUS Attached
     uint8_t vbus_gd:1;
-} vbusv_reg_t __attribute__((packed));
+} vbusv_reg_t __attribute__(());
 
 typedef struct {
     // ADC conversion of Charge Current (IBAT) when VBAT > VBATSHORT
@@ -443,7 +443,7 @@ typedef struct {
     uint8_t ichgr:7;
     // Unused - always reads 0
     uint8_t unused:1;
-} ichgr_reg_t __attribute__((packed));
+} ichgr_reg_t __attribute__(());
 
 typedef struct {
     // Input Current Limit in effect while Input Current Optimizer (ICO) is enabled
@@ -459,7 +459,7 @@ typedef struct {
     // 0 – Not in VINDPM
     // 1 – VINDPM
     uint8_t vdpm_stat:1;
-} idpm_lim_reg_t __attribute__((packed));
+} idpm_lim_reg_t __attribute__(());
 
 typedef struct {
     // Device Revision: 10
@@ -479,7 +479,7 @@ typedef struct {
     // 1 – Reset to default register value and reset safety timer
     // Note: Reset to 0 after register reset is completed
     uint8_t reg_rst:1;
-} ctrl2_reg_t __attribute__((packed));
+} ctrl2_reg_t __attribute__(());
 
 class PMIC_BQ25896 {
 

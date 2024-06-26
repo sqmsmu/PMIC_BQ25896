@@ -3,8 +3,6 @@
 PMIC_BQ25896 bq25896;
 
 void setup(){
-  pinMode(3, OUTPUT);
-  digitalWrite(3, HIGH);
   Serial.begin(115200);
   delay(2000);
   Serial.println("BQ25896 Power Management and Battery Charger Example");

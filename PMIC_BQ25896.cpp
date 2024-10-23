@@ -601,7 +601,7 @@ bq25896_error_t PMIC_BQ25896::setVINDPM(int value){
     uint16_t data = value - 2600.0;
     data = (float)data / 100.0;
     _read(VINDPM, (uint8_t*)&temp_reg);
-    temp_reg.vindpm = value;
+    temp_reg.vindpm = data;
     _write(VINDPM, (uint8_t*)&temp_reg);
     return BQ_OK;
 }
